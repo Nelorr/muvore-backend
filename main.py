@@ -1,0 +1,12 @@
+from fastapi import FastAPI
+from app.database import init_db
+
+app = FastAPI(title="MuvoreAI Backend")
+
+@app.on_event("startup")
+def on_startup():
+    init_db()
+
+@app.get("/")
+def root():
+    return{"status": "ok", "message": "MuvoreAI Backend Initialized"}
